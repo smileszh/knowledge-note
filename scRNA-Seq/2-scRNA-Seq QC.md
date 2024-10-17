@@ -1,5 +1,25 @@
 # scRNA-Seq QC
 
+## 目录
+
+### 过滤原因
+
+### 查看数据
+
+### 过滤前可视化
+
+### 过滤
+
+### 过滤后可视化
+
+### 识别高表达基因
+
+### 批量QC脚本
+
+
+
+
+
 单细胞RNA测序（scRNA-seq）数据的质控（Quality Control, QC）是数据分析的关键步骤之一，旨在确保数据的高质量和可靠性。
 
 ## 过滤原因
@@ -172,9 +192,9 @@ ggsave(filename="Scatterplot.pdf", plot=p3, width = w,height = 5)
 
 
 
-## 过滤步骤
+## 过滤
 
-### 1.过滤最少表达基因数的细胞&最少表达细胞数的基因
+### 1. 过滤最少表达基因数的细胞&最少表达细胞数的基因
 
 也就是前面提到的低质量细胞和第表达基因。
 
@@ -210,7 +230,7 @@ dim(input_sce.filt)
 
 
 
-### 2.线粒体/核糖体/红血细胞基因比例(根据上面的violin图)
+### 2. 线粒体/核糖体/红血细胞基因比例(根据上面的violin图)
 
 ```
 selected_mito <- WhichCells(input_sce.filt, expression = percent_mito < 25)
@@ -228,7 +248,7 @@ dim(input_sce.filt)
 table(input_sce.filt$orig.ident) 
 ```
 
-## 过滤化可视化
+## 过滤后可视化
 
 ```
 feats <- c("nFeature_RNA", "nCount_RNA")
@@ -271,7 +291,7 @@ ggsave(filename="Vlnplot2_filtered.pdf",plot=p2_filtered,width = w,height = 5)
 
 
 
-## QC脚本
+## 批量QC脚本
 
 **曾老师**已经写好了一个QC脚本进行单细胞进行指控，这个笔记也是源于此脚本。
 
