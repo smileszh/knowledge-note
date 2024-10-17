@@ -58,17 +58,17 @@
 
 
 
-
-
-
-
 **当然了，不同数据有不同的特性，也会有不同的过滤方法和参数，只需要先掌握基本流程，再根据自己看到的方法调整即可。我们可以先进行检查，看有没有怪异的样本，再进行调整！**
 
 
 
-## 计算线粒体基因比例
+## 查看数据
 
-### 1. 识别线粒体基因
+
+
+### 计算线粒体基因比例
+
+#### 1. 识别线粒体基因
 
 首先，通过匹配基因名中的前缀来识别线粒体基因。在大多数情况下，线粒体基因的名称以 "MT-" 开头。
 
@@ -77,7 +77,7 @@ mito_genes <- rownames(input_sce)[grep("^MT-", rownames(input_sce), ignore.case 
 print(mito_genes)  # 这将打印出识别出的线粒体基因，可能是13个基因
 ```
 
-### 2. 计算线粒体基因百分比
+#### 2. 计算线粒体基因百分比
 
 使用 *`PercentageFeatureSet`* 函数来计算每个细胞中线粒体基因的表达百分比，并将结果存储在 *`meta.data`* 的 *`percent_mito`* 列中。
 
@@ -85,7 +85,7 @@ print(mito_genes)  # 这将打印出识别出的线粒体基因，可能是13个
 input_sce <- PercentageFeatureSet(input_sce, features = mito_genes, col.name = "percent_mito")
 ```
 
-### 3. 计算和打印五数概括
+#### 3. 计算和打印五数概括
 
 使用 *`fivenum`* 函数来计算 *`percent_mito`* 列的五数概括，并打印结果。
 
@@ -95,9 +95,9 @@ fivenum(input_sce@meta.data$percent_mito)
 
 
 
-## 计算核糖体基因比例
+### 计算核糖体基因比例
 
-### 1. 识别核糖体基因
+#### 1. 识别核糖体基因
 
 通过匹配基因名中的前缀来识别核糖体基因。通常，核糖体基因的名称以 "Rps" 或 "Rpl" 开头。
 
@@ -108,7 +108,7 @@ print(ribo_genes)  # 这将打印出识别出的核糖体基因
 Copyr
 ```
 
-### 2. 计算核糖体基因百分比
+#### 2. 计算核糖体基因百分比
 
 使用 *`PercentageFeatureSet`* 函数来计算每个细胞中核糖体基因的表达百分比，并将结果存储在 *`meta.data`* 的 *`percent_ribo`* 列中。
 
@@ -118,7 +118,7 @@ input_sce <- PercentageFeatureSet(input_sce, features = ribo_genes, col.name = "
 Copyr
 ```
 
-### 3. 计算和打印五数概括
+#### 3. 计算和打印五数概括
 
 使用 *`fivenum`* 函数来计算 *`percent_ribo`* 列的五数概括，并打印结果。
 
@@ -127,9 +127,9 @@ percent_ribo_fivenum <- fivenum(input_sce@meta.data$percent_ribo)
 print(percent_ribo_fivenum)
 ```
 
-## 计算红血细胞基因比例
+### 计算红血细胞基因比例
 
-### 1. 识别血红蛋白基因
+#### 1. 识别血红蛋白基因
 
 通过匹配基因名中的前缀来识别血红蛋白基因。通常，血红蛋白基因的名称以 "Hb" 开头。
 
@@ -140,7 +140,7 @@ print(Hb_genes)  # 打印识别出的血红蛋白基因
 Copyr
 ```
 
-### 2. 计算血红蛋白基因百分比
+#### 2. 计算血红蛋白基因百分比
 
 使用 *`PercentageFeatureSet`* 函数来计算每个细胞中血红蛋白基因的表达百分比，并将结果存储在 *`meta.data`* 的 *`percent_hb`* 列中。
 
@@ -150,7 +150,7 @@ input_sce <- PercentageFeatureSet(input_sce, features = Hb_genes, col.name = "pe
 Copyr
 ```
 
-### 3. 计算和打印五数概括
+#### 3. 计算和打印五数概括
 
 使用 *`fivenum`* 函数来计算 *`percent_hb`* 列的五数概括，并打印结果。
 
